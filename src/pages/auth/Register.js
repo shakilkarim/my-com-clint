@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import toast from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
 import Jumboton from '../../components/cards/Jumboton';
+import { useAuth } from '../../context/auth';
 const Register = () => {
     //SIte state define
     const [name,setName] =useState('Shakil karim');
@@ -11,13 +12,15 @@ const Register = () => {
 
     //Hooks
     const navigate = useNavigate();
-    
+    const [auth,setAuth] = useAuth()
     //From submit data function
     const handleSubmit =async (e) => {
+        //Loading handle 
         e.preventDefault();
         try{
             const {data} = await axios.post(
-                `${process.env.REACT_APP_API}/register`,
+                //Register route handle 
+                `/register`,
                 {
                     name,
                     email,
@@ -29,12 +32,16 @@ const Register = () => {
             if(data?.error){
                 toast.error(data.error);
             }else{
+                //Response data set localStorage 
                 localStorage.setItem('auth', JSON.stringify(data));
+                setAuth({...auth,user:data.user, token:data.token})
                 toast.success("Registration successful");
+                //Route navigate differnet 
                 navigate("/");
             }
         }catch(err){
-            toast.error('Register failed try again')
+            console.log(err);
+            toast.error('Register failed try again');
         }
     }
     return (
