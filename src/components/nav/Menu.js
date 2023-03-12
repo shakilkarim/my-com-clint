@@ -2,7 +2,8 @@ import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
-
+import logo from '../../images/Logo.svg';
+import './Nav.css';
 const Menu = () => {
   // hooks
   const [auth, setAuth] = useAuth();
@@ -15,15 +16,19 @@ const Menu = () => {
   };
   return (
     <>
-      <ul className="nav d-flex justify-content-between shadow-sm mb-2">
+     
+     <div>
+      
+     <ul className="nav navbar d-flex justify-content-end shadow-sm mb-2">
+       <img src={logo} alt="" /> 
         <li className="nav-item">
-          <NavLink className="nav-link" aria-current="page" to="/">
+          <NavLink className="nav-link nav" aria-current="page" to="/">
             HOME
           </NavLink>
         </li>
         <li className="nav-item">
           <NavLink
-            className="nav-link"
+            className="nav-link nav"
             aria-current="page"
             to="/dashboard/secret"
           >
@@ -34,38 +39,39 @@ const Menu = () => {
         {!auth?.user ? (
           <>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/login">
+              <NavLink className="nav-link nav" to="/login">
                 LOGIN
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/register">
+              <NavLink className="nav-link nav" to="/register">
                 REGISTER
               </NavLink>
             </li>
           </>
         ) : (
-          <Dropdown>
-          <Dropdown.Toggle variant="" id="dropdown-basic">
+          <Dropdown className='nav'>
+          <Dropdown.Toggle variant="" className='nav' id="dropdown-basic">
             {auth?.user?.name}
           </Dropdown.Toggle>
     
           <Dropdown.Menu>
             <Dropdown.Item href="#/action-1">
             <NavLink
+              
               to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"
                                 }`}>
                Dashboard 
             </NavLink>
             </Dropdown.Item>
-            <Dropdown.Item href="#/action-2">
-            <a onClick={logout} className="nav-link">
+            <Dropdown.Item>
+            <a href='/#' onClick={logout} className="nav-link">
                     Logout
             </a>
             </Dropdown.Item>
             
           </Dropdown.Menu>
-        </Dropdown>
+          </Dropdown>
           // <div className="dropdown">
            
           //   <a className=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,6 +101,8 @@ const Menu = () => {
          
         )}
       </ul>
+     </div>
+  
     </>
 
   );

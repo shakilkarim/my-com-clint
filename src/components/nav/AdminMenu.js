@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const AdminMenu = () => {
-    return (
+    
+    return ( 
         <div>
             <div className="p-3 mt-2 mb-2 h4 bg-light">Admin Links</div>
 

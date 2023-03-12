@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from 'react-router-dom';
-import Jumboton from '../../components/cards/Jumboton';
 import { useAuth } from '../../context/auth';
+import './Login.css';
 const Login = () => {
     //Login State
         const [email,setEmail] = useState('shakil1997@gmail.com');
@@ -44,27 +44,48 @@ const Login = () => {
         }
     return (
         <div>
-            <Jumboton title='Login Page'></Jumboton>
-            <div className="container mt-5">
-                <div className="row">
-                    <div className="col-md-6 offset-md-3">
-                        <form onSubmit={handleSubmit}>
-                            <input type="email" className='form-control mb-4 p-2' placeholder='Enter your Email'
-                            value={email}
-                            onChange={(e)=> setEmail(e.target.value)}
-                            />
-                            <input type="password" className='form-control mb-4 p-2' placeholder='Enter your Password'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+            {/* <Jumboton title='Login Page'></Jumboton> */}
+           
 
-                        <input type="submit" className='btn btn-primary'/>
-                        </form>
+            <div className="Auth-form-container">
+                <form onSubmit={handleSubmit} className="Auth-form">
+                    <div className="Auth-form-content">
+                    <h3 className="Auth-form-title">Login</h3>
+                    <div className="form-group mt-3">
+                        <label>Email address</label>
+                        <input
+                        value={email}
+                        type="email"
+                        className="form-control mt-1"
+                        placeholder="Enter email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
-                </div>
+                    <div className="form-group mt-3">
+                        <label>Password</label>
+                        <input
+                        type="password"
+                        className="form-control mt-1"
+                        placeholder="Enter password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="d-grid gap-2 mt-3">
+                        <button type="submit" className="btn btn-primary">
+                        Submit
+                        </button>
+                    </div>
+                    
+                    </div>
+                </form>
             </div>
         </div>
-    );
+
+
+        
+
+    )
+    
 };
 
 export default Login;

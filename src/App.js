@@ -1,13 +1,16 @@
+
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
-import Menu from "./components/nav/Menu";
+
+import Menu from './components/nav/Menu';
 import AdminRoute from './components/routes/AdminRoute';
 import PrivateRoute from './components/routes/PrivateRoute';
 import AdminCategory from './pages/admin/AdminCategory';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminProduct from './pages/admin/AdminProduct';
 import Products from './pages/admin/Products';
+import ProductUpdate from './pages/admin/ProductUpdate';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Home from "./pages/Home";
@@ -29,9 +32,10 @@ function App() {
   return (
       <div>
         <BrowserRouter>
-          <Menu></Menu>
-          <Toaster></Toaster>
+         <Menu></Menu> 
+         <Toaster></Toaster>
           <Routes>
+              <Route path='/' element={<Home/>}>Home</Route>
               <Route path='/' element={<Home/>}>Home</Route>
               <Route path='/login' element={<Login></Login>}></Route>
               <Route path='/register' element={<Register></Register>}></Route>
@@ -47,6 +51,10 @@ function App() {
                     <Route path='admin/category' element={<AdminCategory></AdminCategory>}></Route>
                     <Route path='admin/product' element={<AdminProduct></AdminProduct>}></Route>
                     <Route path='admin/products' element={<Products></Products>}></Route>
+                    <Route
+                      path="admin/product/update/:slug"
+                      element={<ProductUpdate />}
+                    />
               </Route>
               <Route path="*" element={<PageNotFound></PageNotFound>} replace></Route>
               

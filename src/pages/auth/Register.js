@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import toast from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
-import Jumboton from '../../components/cards/Jumboton';
 import { useAuth } from '../../context/auth';
 const Register = () => {
     //SIte state define
@@ -46,30 +45,50 @@ const Register = () => {
     }
     return (
         <div>
-            <Jumboton title='Register Page'></Jumboton>
-            <div className="container mt-5">
-                <div className="row">
-                    <div className="col-md-6 offset-md-3">
-                        <form onSubmit={handleSubmit}>
-                            <input type="text" className="form-control mb-4 p-2" placeholder="Enter your name" 
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            />
-                            <input type="email" 
-                            className='form-control mb-4 p-2'
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <input type="password" className='form-control mb-4 p-2'placeholder="Enter your password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            />
+             {/* <Jumboton title='Register Page'></Jumboton> */}
+           
 
-                            <button className='btn btn-primary' type='submit'>submit</button>
-                        </form>
+         <div className="Auth-form-container">
+                <form onSubmit={handleSubmit} className="Auth-form">
+                    <div className="Auth-form-content">
+                    <h3 className="Auth-form-title">Register</h3>
+                    <div className="form-group mt-3">
+                        <label>User Name</label>
+                        <input
+                        value={name}
+                        type="email"
+                        className="form-control mt-1"
+                        placeholder="Enter email"
+                        onChange={(e) => setName(e.target.value)}
+                        />
                     </div>
-                </div>
+                    <div className="form-group mt-3">
+                        <label>Email address</label>
+                        <input
+                        value={email}
+                        type="email"
+                        className="form-control mt-1"
+                        placeholder="Enter email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-group mt-3">
+                        <label>Password</label>
+                        <input
+                        type="password"
+                        className="form-control mt-1"
+                        placeholder="Enter password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="d-grid gap-2 mt-3">
+                        <button type="submit" className="btn btn-primary">
+                        Submit
+                        </button>
+                    </div>
+                    
+                    </div>
+                </form>
             </div>
         </div>
     );
